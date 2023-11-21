@@ -7,20 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED3C1B3B2B0CDD3900346792 /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C1B3A2B0CDD3900346792 /* MovieDetailsView.swift */; };
+		ED3C1B3D2B0CEAEF00346792 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C1B3C2B0CEAEF00346792 /* Movie.swift */; };
+		ED3C1B3F2B0CEB6700346792 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C1B3E2B0CEB6700346792 /* MovieCell.swift */; };
+		ED3C1B412B0CED0D00346792 /* NewMovieScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3C1B402B0CED0D00346792 /* NewMovieScreen.swift */; };
 		EDFEEAC22B0B6CDD0032439A /* LorenzoProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFEEAC12B0B6CDD0032439A /* LorenzoProjectApp.swift */; };
 		EDFEEAC42B0B6CDD0032439A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFEEAC32B0B6CDD0032439A /* ContentView.swift */; };
 		EDFEEAC62B0B6CE00032439A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDFEEAC52B0B6CE00032439A /* Assets.xcassets */; };
 		EDFEEAC92B0B6CE00032439A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDFEEAC82B0B6CE00032439A /* Preview Assets.xcassets */; };
-		EDFEEB022B0BB6670032439A /* MovieCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFEEB012B0BB6670032439A /* MovieCreatorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ED3C1B3A2B0CDD3900346792 /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
+		ED3C1B3C2B0CEAEF00346792 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		ED3C1B3E2B0CEB6700346792 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		ED3C1B402B0CED0D00346792 /* NewMovieScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMovieScreen.swift; sourceTree = "<group>"; };
 		EDFEEABE2B0B6CDD0032439A /* LorenzoProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LorenzoProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDFEEAC12B0B6CDD0032439A /* LorenzoProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LorenzoProjectApp.swift; sourceTree = "<group>"; };
 		EDFEEAC32B0B6CDD0032439A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EDFEEAC52B0B6CE00032439A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EDFEEAC82B0B6CE00032439A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		EDFEEB012B0BB6670032439A /* MovieCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +59,10 @@
 		EDFEEAC02B0B6CDD0032439A /* LorenzoProject */ = {
 			isa = PBXGroup;
 			children = (
-				EDFEEB012B0BB6670032439A /* MovieCreatorView.swift */,
+				ED3C1B3C2B0CEAEF00346792 /* Movie.swift */,
+				ED3C1B402B0CED0D00346792 /* NewMovieScreen.swift */,
+				ED3C1B3E2B0CEB6700346792 /* MovieCell.swift */,
+				ED3C1B3A2B0CDD3900346792 /* MovieDetailsView.swift */,
 				EDFEEAC12B0B6CDD0032439A /* LorenzoProjectApp.swift */,
 				EDFEEAC32B0B6CDD0032439A /* ContentView.swift */,
 				EDFEEAC52B0B6CE00032439A /* Assets.xcassets */,
@@ -140,9 +149,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED3C1B412B0CED0D00346792 /* NewMovieScreen.swift in Sources */,
 				EDFEEAC42B0B6CDD0032439A /* ContentView.swift in Sources */,
-				EDFEEB022B0BB6670032439A /* MovieCreatorView.swift in Sources */,
+				ED3C1B3F2B0CEB6700346792 /* MovieCell.swift in Sources */,
+				ED3C1B3B2B0CDD3900346792 /* MovieDetailsView.swift in Sources */,
 				EDFEEAC22B0B6CDD0032439A /* LorenzoProjectApp.swift in Sources */,
+				ED3C1B3D2B0CEAEF00346792 /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

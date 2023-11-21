@@ -11,7 +11,7 @@ import SwiftUI
 struct LorenzoProjectApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(myMovieList: MovieList(movies: []))
         }
     }
 }
