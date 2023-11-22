@@ -1,28 +1,27 @@
 import SwiftUI
 
-struct ContentView: View {
-    @State private var movies: [Movie] = []
-    @State private var showingMovieCreator = false
-    @State private var selectedMovie: Movie?
-    @State var newMovieScreenIsPresented = false
-    @StateObject var myMovieList: MovieList
-    @State var selectedIndex: Int = -1
+struct MovieListView: View {
+    @ObservedObject var myMovieList: MovieList
+    @State private var newMovieScreenIsPresented = false
+    var toggleFavorite: (Movie) -> Void
+    
 
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottomTrailing) {
-                    VStack(alignment: .leading, spacing: 16) {
-                        List{
-                            ForEach(myMovieList.movies.indices, id: \.self) { index in
-                                NavigationLink(destination: MovieDetailsView(movie: myMovieList.movies[index])) {
-                                    MovieCell(movie: myMovieList.movies[index])
+                VStack(alignment: .leading, spacing: 16) {
+                    List {
+                        ForEach(myMovieList.movies.indices, id: \.self) { index in
+                            NavigationLink(destination: MovieDetailsView(movie: myMovieList.movies[index])) {
+                                MovieCell(movie: myMovieList.movies[index]) {
+                                    toggleFavorite(myMovieList.movies[index])
                                 }
-                                Divider()
                             }
-                            .onDelete(perform: deleteMovie)
+                            Divider()
                         }
-                    
-                        .padding(.horizontal, 1) // Réduit la largeur
+                        .onDelete(perform: deleteMovie)
+                    }
+                    .padding(.horizontal, 1)
                 }
 
                 Button(action: {
@@ -44,10 +43,12 @@ struct ContentView: View {
             .navigationBarTitle("Mes Films")
         }
         .sheet(isPresented: $newMovieScreenIsPresented) {
-            NewMovieScreen(movielist: myMovieList, isPresented: $newMovieScreenIsPresented) {
+            NewMovieScreen(movies: $myMovieList.movies, movielist: myMovieList, isPresented: $newMovieScreenIsPresented) {
                 newMovieScreenIsPresented = false
             }
         }
+
+
     }
 
     private func deleteMovie(at offsets: IndexSet) {
@@ -56,5 +57,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(myMovieList: MovieList(movies: Movie.previewMovieList))
+    MovieListView(myMovieList: MovieList(movies: Movie.previewMovieList), toggleFavorite: { _ in })
 }
