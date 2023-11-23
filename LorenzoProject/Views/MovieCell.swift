@@ -2,57 +2,35 @@ import SwiftUI
 
 struct MovieCell: View {
     @ObservedObject var movie: Movie
-    var onToggleFavorite: () -> Void
+    var toggleFavorite: () -> Void
 
     var body: some View {
-        HStack {
+        VStack(alignment: .leading) {
             if let imageUrl = movie.imageUrl,
                let url = URL(string: imageUrl),
                let imageData = try? Data(contentsOf: url),
                let uiImage = UIImage(data: imageData) {
                 Image(uiImage: uiImage)
                     .resizable()
-                    .frame(width: 100, height: 155)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 200)
+                    .cornerRadius(10)
             } else {
                 Rectangle()
-                     .frame(width: 100, height: 155)
-                     .foregroundColor(.gray)
-             }
-
-            VStack(alignment: .leading) {
-                Text(movie.title)
-                    .font(.headline)
-                Text("Avis: \(limitedAvis)")
-                Text("Note: \(String(repeating: "⭐️", count: Int(movie.rating)))")
-                    .font(.system(size: 14))
-                    .foregroundColor(.secondary)
-                Button(action: {
-                    toggleFavorite()
-                }) {
-                    Image(systemName: movie.isFavorite ? "heart.fill" : "heart")
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(.red)
-                }
+                    .foregroundColor(.gray)
+                    .frame(height: 200)
+                    .cornerRadius(10)
             }
-        }
-    }
 
-    private var limitedAvis: String {
-        let maxAvisLength = 20
-        if movie.avis.count > maxAvisLength {
-            return String(movie.avis.prefix(maxAvisLength)) + "..."
-        } else {
-            return movie.avis
+            Text(movie.title)
+                .font(.headline)
+                .padding(.top, 8)
+                .padding(.leading, 8)
         }
-    }
-
-    private func toggleFavorite() {
-        movie.isFavorite.toggle()
-        onToggleFavorite()
     }
 }
 
+
 #Preview {
-    MovieCell(movie: Movie.previewMovieList[0], onToggleFavorite: {})
+    MovieCell(movie: Movie.previewMovieList[0], toggleFavorite: {})
 }

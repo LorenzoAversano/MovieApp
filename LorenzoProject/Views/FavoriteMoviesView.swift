@@ -14,14 +14,21 @@ struct FavoriteMoviesView: View {
     var body: some View {
         List {
             ForEach(myMovieList.movies.filter { $0.isFavorite }) { movie in
-                NavigationLink(destination: MovieDetailsView(movie: movie)) {
-                    MovieCell(movie: movie) {
-                        toggleFavorite(movie)
+                NavigationLink(destination: EditMovieView(movie: movie)) {
+                    HStack {
+                        Text(movie.title)
+                        Spacer()
+                        Image(systemName: "heart.fill")
+                            .foregroundColor(.red)
+                            .onTapGesture {
+                                toggleFavorite(movie)
+                            }
                     }
                 }
-                Divider()
             }
         }
         .navigationTitle("Favoris")
     }
 }
+
+

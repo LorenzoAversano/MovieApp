@@ -18,6 +18,7 @@ class MovieList: ObservableObject {
     }
 }
 
+
 class Movie: Identifiable, ObservableObject {
     let id: UUID = UUID()
     @Published var title: String

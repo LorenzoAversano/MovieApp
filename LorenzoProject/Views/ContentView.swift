@@ -10,8 +10,7 @@ struct ContentView: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding()
-                    .foregroundColor(.white)
-                    .background(Color.black)
+
             }
             .tabItem {
                 Image(systemName: "house")
