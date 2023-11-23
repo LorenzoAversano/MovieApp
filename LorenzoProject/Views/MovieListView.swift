@@ -5,15 +5,11 @@ struct MovieListView: View {
     @State private var newMovieScreenIsPresented = false
     var toggleFavorite: (Movie) -> Void
 
-    var popularMovies: [Movie] {
-        return myMovieList.movies.filter { $0.rating > 4 }
-    }
-
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack {
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 16) {
                         Text("Mes Films")
                             .font(.largeTitle)
                             .fontWeight(.bold)
@@ -32,7 +28,7 @@ struct MovieListView: View {
                                 } else {
                                     ForEach(myMovieList.movies.indices, id: \.self) { index in
                                         NavigationLink(
-                                            destination: MovieDetailsView(movie: myMovieList.movies[index]),
+                                            destination: MovieDetailsView(movie: myMovieList.movies[index], movieList: myMovieList),
                                             label: {
                                                 MovieCell(movie: myMovieList.movies[index]) {
                                                     toggleFavorite(myMovieList.movies[index])
@@ -50,7 +46,7 @@ struct MovieListView: View {
 
                     Spacer().frame(height: 20)
 
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 16) {
                         Text("En Tendance")
                             .font(.largeTitle)
                             .fontWeight(.bold)
@@ -76,7 +72,6 @@ struct MovieListView: View {
                     .navigationBarTitleDisplayMode(.inline)
                 }
             }
-            
         }
         .sheet(isPresented: $newMovieScreenIsPresented) {
             NewMovieScreen(movies: $myMovieList.movies, movielist: myMovieList, isPresented: $newMovieScreenIsPresented) {
@@ -93,6 +88,10 @@ struct MovieListView: View {
             }
             .padding()
         )
+    }
+
+    var popularMovies: [Movie] {
+        return myMovieList.movies.filter { $0.rating > 4 }
     }
 }
 

@@ -4,7 +4,9 @@ struct MovieDetailsView: View {
     @ObservedObject var movie: Movie
     @State private var title: String = ""
     @State private var isEditMovieViewPresented = false
+    @State private var isDeleteAlertPresented = false
 
+    @ObservedObject var movieList: MovieList
 
     var body: some View {
         ScrollView {
@@ -47,18 +49,41 @@ struct MovieDetailsView: View {
                 }
                 .padding()
 
-                Button(action: {
-                    isEditMovieViewPresented = true
-                }) {
-                    Text("Modifier")
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(Color.blue)
-                        .cornerRadius(8)
-                }
-                .padding()
-                .sheet(isPresented: $isEditMovieViewPresented) {
-                    EditMovieView(movie: movie)
+                HStack{
+                    Button(action: {
+                        isEditMovieViewPresented = true
+                    }) {
+                        Text("Modifier")
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(Color.blue)
+                            .cornerRadius(8)
+                    }
+                    .padding()
+                    .sheet(isPresented: $isEditMovieViewPresented) {
+                        EditMovieView(movie: movie)
+                    }
+                    Button(action: {
+                        isDeleteAlertPresented = true
+                    }) {
+                        Text("Supprimer")
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(Color.red)
+                            .cornerRadius(8)
+                    }
+                    .padding()
+                    .alert(isPresented: $isDeleteAlertPresented) {
+                        Alert(
+                            title: Text("Confirmer la suppression"),
+                            message: Text("Êtes-vous sûr de vouloir supprimer ce film?"),
+                            primaryButton: .destructive(Text("Supprimer")) {
+                                movieList.movies.removeAll(where: { $0.id == movie.id })
+                                isDeleteAlertPresented = false
+                            },
+                            secondaryButton: .cancel()
+                        )
+                    }
                 }
             }
         }
@@ -77,6 +102,11 @@ struct MovieDetailsView: View {
     }
 }
 
-#Preview {
-    MovieDetailsView(movie: Movie.previewMovieList[0])
+struct MovieDetailsView_Previews: PreviewProvider {
+    static var previews: some View {
+        let previewMovieList = Movie.previewMovieList
+        let movieList = MovieList(movies: previewMovieList)
+        
+        return MovieDetailsView(movie: previewMovieList[0], movieList: movieList)
+    }
 }

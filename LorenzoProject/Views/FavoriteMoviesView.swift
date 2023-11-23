@@ -21,7 +21,9 @@ struct FavoriteMoviesView: View {
                         Image(systemName: "heart.fill")
                             .foregroundColor(.red)
                             .onTapGesture {
-                                toggleFavorite(movie)
+                                if let index = myMovieList.movies.firstIndex(where: { $0.id == movie.id }) {
+                                    myMovieList.movies[index].isFavorite.toggle()
+                                }
                             }
                     }
                 }
